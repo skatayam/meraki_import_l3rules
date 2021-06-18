@@ -1,0 +1,19 @@
+{
+  "rules": [
+    {%- for rule in data %}
+      {
+          "comment": "{{ rule.comment }}",
+          "policy": "{{ rule.policy }}",
+          "protocol": "{{ rule.protocol }}",
+          "destPort": {{ rule.dst_port }},
+          "destCidr": "{{ rule.dst_cidr }}",
+          "srcPort": "{{ rule.src_port }}",
+          "srcCidr": "{{ rule.src_cidr }}",
+          "syslogEnabled": {{ rule.syslog }}
+      }
+    {%- if loop.index < data|length -%}
+    ,
+    {%- endif %}
+    {%- endfor %}
+  ]
+}
